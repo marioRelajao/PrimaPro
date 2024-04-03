@@ -12,8 +12,8 @@ red_URI = "https://localhost:8080"
 #Need to feed here whatever we want
 artists = ['Justice', 'Disclosure']
 
-#Spotipy setup, with the scope to the user's playlist
-scope = 'playlist-modify-public'
+#Spotipy setup, with the scope to the user's playlist. No need rn bc playlist is private. Future changes
+#scope = 'playlist-modify-public'
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_ID, client_secret=client_secret, redirect_uri=red_URI, scope='playlist-modify-private', username=username))
 
 #For each artist in the list, we search for the first song of the artist and add it to the playlist (now only one song per artist)
@@ -26,4 +26,4 @@ for artist in artists:
     if results['tracks']['items']:
         track_id = results['tracks']['items'][0]['id'] 
         #print(track_id)
-        sp.playlist_add_items(playlist_ID, [track_id])#<- But here we're getting 403 due to Insufficient client scope
+        sp.playlist_add_items(playlist_ID, [track_id])
